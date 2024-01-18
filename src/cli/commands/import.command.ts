@@ -2,7 +2,7 @@ import { Command } from './command.interface.js';
 import chalk from 'chalk';
 import { TSVFileReader } from '../../shared/libs/file-reader/tsv-file-reader.js';
 
-export class ImportCommand implements Command {
+export default class ImportCommand implements Command {
   public getName(): string {
     return '--import';
   }

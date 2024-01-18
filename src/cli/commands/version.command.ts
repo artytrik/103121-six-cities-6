@@ -16,7 +16,7 @@ function isPackageJSONConfig(value: unknown): value is PackageJSONConfig {
   );
 }
 
-export class VersionCommand implements Command {
+export default class VersionCommand implements Command {
   constructor(
     private readonly filePath: string = './package.json'
   ) {}

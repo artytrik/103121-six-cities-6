@@ -13,14 +13,11 @@ async function bootstrap() {
 
   for (const file of files) {
     const modulePath = resolve(file);
-    const moduleExportItems = await import(modulePath);
+    const { default: CommandClass } = await import(modulePath);
 
-    for (const exportKey of Object.keys(moduleExportItems)) {
-      const exportItem = moduleExportItems[exportKey];
-      if (exportItem.prototype && typeof exportItem.prototype.execute === 'function') {
-        const commandInstance = new exportItem();
-        importedCommands.push(commandInstance);
-      }
+    if (typeof CommandClass === 'function') {
+      const commandInstance = new CommandClass();
+      importedCommands.push(commandInstance);
     }
   }
 
